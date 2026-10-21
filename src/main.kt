@@ -36,7 +36,10 @@ fun runStudent(){
                 val course = readln()
                 print("Enter the mark: ")
                 val mark = readln().toInt()
-                uni.addStudent(id, name, course, mark)
+                if (!uni.addStudent(id, name, course, mark)){
+                    println("Student with id '$id' already exists\n")
+                }
+                else println("Successfully added $name\n")
             }
             "2" -> {
                 print("Enter the ID: ")
@@ -47,7 +50,10 @@ fun runStudent(){
                 val course = readln()
                 print("Enter the mark: ")
                 val mark = readln().toInt()
-                uni.addStudent(id, name, course, mark, true)
+                if (!uni.addStudent(id, name, course, mark, true)){
+                    println("Student with id '$id' already exists\n")
+                }
+                else println("Successfully added $name\n")
             }
             "3" -> {
                 print("Enter the ID: ")

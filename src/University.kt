@@ -1,35 +1,35 @@
 class University {
     private var modules = mutableListOf<Module>()
-    private var students = mutableListOf<Student>()
+    private var students = mutableMapOf<String, Student>()
 
     public fun findStudentsByName(name_: String) : MutableList<Student> {
         val matches: MutableList<Student> = mutableListOf()
         val name = name_.lowercase()
-        for (student in students) {
-            if (student.name.lowercase() == name) {
-                matches.add(student)
+
+        students.forEach { student ->
+            if (student.value.name.lowercase() == name) {
+                matches.add(student.value)
             }
         }
         return matches
     }
 
     public fun findStudentById(id: String) : Student? {
-        for (student in students) {
-            if (student.id == id) {
-                return student
-            }
+        return students[id]
+    }
+
+    public fun addStudent(student: Student) : Boolean{
+        if (students[student.id] != null){
+            return false
         }
-        return null
+        students[student.id] = student
+        return true
     }
 
-    public fun addStudent(student: Student, isMasters: Boolean = false) {
-        students.add(student)
-    }
-
-    public fun addStudent(id: String, name: String, course: String, mark: Int, isMasters: Boolean = false) {
+    public fun addStudent(id: String, name: String, course: String, mark: Int, isMasters: Boolean = false) : Boolean {
         if (isMasters) {
-            students.add(MastersStudent(id, name, course, mark))
+            return addStudent(MastersStudent(id, name, course, mark))
         }
-        students.add(UndergradStudent(id, name, course, mark))
+        return addStudent(UndergradStudent(id, name, course, mark))
     }
 }
