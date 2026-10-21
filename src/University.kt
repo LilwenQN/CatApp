@@ -22,11 +22,14 @@ class University {
         return null
     }
 
-    public fun addStudent(student: Student) {
+    public fun addStudent(student: Student, isMasters: Boolean = false) {
         students.add(student)
     }
 
-    public fun addStudent(id: String, name: String, course: String, mark: Int) {
-        students.add(Student(id, name, course, mark))
+    public fun addStudent(id: String, name: String, course: String, mark: Int, isMasters: Boolean = false) {
+        if (isMasters) {
+            students.add(MastersStudent(id, name, course, mark))
+        }
+        students.add(UndergradStudent(id, name, course, mark))
     }
 }

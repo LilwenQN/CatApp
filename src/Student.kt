@@ -1,23 +1,31 @@
-class Student (val id: String, val name: String, var course: String, var mark: Int) {
-    public fun getGrade() : String {
-        return when (mark) {
-            in 0..39 -> "Fail"
-            in 40..49 -> "Third"
-            in 50..59 -> "2/2"
-            in 60..69 -> "2/1"
-            else -> "First"
+abstract class Student (val id: String,
+                    val name: String,
+                        var course: String,
+                        markIn: Int)
+{
+    public var mark: Int = 0
+        set(newMark){
+            if (mark in 0..100){
+                field = newMark
+            }
         }
+
+    init {
+        mark = markIn
     }
 
-    public fun didPass() : Boolean {
+    abstract fun getGrade() : String
+
+    fun didPass() : Boolean {
         return mark >= 40
     }
 
-    public override fun toString(): String {
+    override fun toString(): String {
         return """
             name: $name
             course: $course
             Mark: $mark
+            Grade: ${getGrade()}
         """.trimIndent()
     }
 }
