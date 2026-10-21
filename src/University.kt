@@ -24,6 +24,7 @@ class University {
         }
         students[student.id] = student
         return true
+
     }
 
     public fun addStudent(id: String, name: String, course: String, mark: Int, isMasters: Boolean = false) : Boolean {

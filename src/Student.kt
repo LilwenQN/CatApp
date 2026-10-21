@@ -1,8 +1,9 @@
 abstract class Student (val id: String,
-                    val name: String,
+                        val name: String,
                         var course: String,
-                        markIn: Int)
+                            markIn: Int)
 {
+    // CONSTRUCTOR CODE
     public var mark: Int = 0
         set(newMark){
             if (mark in 0..100){
@@ -14,6 +15,7 @@ abstract class Student (val id: String,
         mark = markIn
     }
 
+    //
     abstract fun getGrade() : String
 
     fun didPass() : Boolean {
